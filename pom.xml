@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- nome do pacote -->
+	<groupId>br.senac.go</groupId>
+	<!--Nome do projeto -->
+	<artifactId>exemplo-projeto-maven</artifactId>
+	<!-- versão do projeto -->
+	<!--Geralmente a versão é associada a duas características:
+	1. Versionamento semântico (https://semver.org/lang/pt-BR/
+	1.1 versão Maior(MAJOR): quando fizer mudanças incompatíveis na API,
+		versão Menor(MINOR): quando adicionar funcionalidades mantendo compatibilidade, e
+		versão de Correção(PATCH): quando corrigir falhas mantendo compatibilidade.
+	-->
+	<version>1.0.0</version>
+	<packaging>jar</packaging>
+
+	<name>Projeto exemplo - maven</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<versao.compiler>1.8</versao.compiler>
+		<versao.lombok>1.18.8</versao.lombok>
+		<test.versao>1.0.5</test.versao>
+		<encode>UTF-8</encode>
+
+		<maven.compiler.source>${versao.compiler}</maven.compiler.source>
+		<maven.compiler.target>${versao.compiler}</maven.compiler.target>
+		<lombok.version>${versao.lombok}</lombok.version>
+		<test.util.version>${test.versao}</test.util.version>
+		<project.build.sourceEncoding>${encode}</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.2</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.target}</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
