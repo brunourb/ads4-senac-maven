@@ -33,6 +33,7 @@
 		<test.versao>1.0.5</test.versao>
 		<encode>UTF-8</encode>
 
+		<swagger.version>2.9.2</swagger.version>
 		<maven.compiler.source>${versao.compiler}</maven.compiler.source>
 		<maven.compiler.target>${versao.compiler}</maven.compiler.target>
 		<lombok.version>${versao.lombok}</lombok.version>
@@ -69,6 +70,26 @@
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>2.13.3</version>
+		</dependency>
+
+		<!-- swagger - Auxilia e publica uma api de testes para o cliente -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${swagger.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${swagger.version}</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/io.springfox/springfox-spring-web -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-spring-web</artifactId>
+			<version>${swagger.version}</version>
 		</dependency>
 	</dependencies>
 
