@@ -21,6 +21,10 @@ spring:
   banner:
     charset: ${SPRING_BANNER_CHARSET}
     location: ${SPRING_BANNER_LOCATION}
+  jpa:
+    open-in-view: false
+
+
 
 #Logging
 logging:

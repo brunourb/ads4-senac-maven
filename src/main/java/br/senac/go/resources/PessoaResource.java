@@ -1,5 +1,6 @@
 package br.senac.go.resources;
 
+
 import br.senac.go.domain.Pessoa;
 import br.senac.go.generics.GenericOperationsResource;
 import io.swagger.annotations.Api;
@@ -7,7 +8,6 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.http.MediaType;
-import org.springframework.javapoet.ClassName;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
