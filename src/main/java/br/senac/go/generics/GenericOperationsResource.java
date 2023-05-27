@@ -31,7 +31,7 @@ public interface GenericOperationsResource<E,N> {
      * @param entity
      * @param id
      */
-    public void patch(E entity, N id);
+    public void patch(E entity, N id) throws Exception;
 
     /**
      * Deleta um registro no banco;

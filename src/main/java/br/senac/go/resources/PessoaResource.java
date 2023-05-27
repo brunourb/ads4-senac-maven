@@ -3,10 +3,12 @@ package br.senac.go.resources;
 
 import br.senac.go.domain.Pessoa;
 import br.senac.go.generics.GenericOperationsResource;
+import br.senac.go.services.PessoaService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +23,14 @@ import java.util.logging.Logger;
         tags = "pessoa ")
 public class PessoaResource implements
         GenericOperationsResource<Pessoa, Integer> {
+
+    @Autowired
+    private PessoaService pessoaService;
+
+    //Outro exemplo de fazer injeção de dependência sem usar @Autowired
+    /*public PessoaResource(PessoaService pessoaService){
+        this.pessoaService = pessoaService;
+    }*/
 
     private static final Logger LOGGER =
             Logger.getLogger(PessoaResource.class.getName());
@@ -41,17 +51,19 @@ public class PessoaResource implements
     @ApiResponses(value={
             @ApiResponse(code = 200, message = "Requisição feita com sucesso.", response = Pessoa.class),
             @ApiResponse(code = 201, message = "Registro criado com sucesso.", response = Pessoa.class),
-            @ApiResponse(code = 204, message = "O servidor processou a solicitação com sucesso e não está retornando nenhum conteúdo.", response = Pessoa.class),
+            @ApiResponse(code = 204, message = "O servidor processou a solicitação com sucesso e não está retornando nenhum conteúdo."),
             @ApiResponse(code = 301, message = "Redirecionamento permanente.", response = Pessoa.class),
             @ApiResponse(code = 401, message = "Não autorizado.", response = Pessoa.class),
             @ApiResponse(code = 404, message = "Registro não encontrado.", response = Pessoa.class),
             @ApiResponse(code = 500, message = "Erro na requisão, verifique configurações do servidor.", response = Pessoa.class)
     })
     public Pessoa post(@RequestBody @Validated Pessoa entity) {
+        LOGGER.log(Level.INFO,"PessoaResource.post inicado {} ", entity);
 
-        LOGGER.log(Level.INFO,"Exemplo de imprimir", entity);
+        Pessoa pessoaPersitida = this.pessoaService.create(entity);
 
-        return entity;
+        LOGGER.log(Level.INFO,"PessoaResource.post concluído {} ", pessoaPersitida);
+        return pessoaPersitida;
     }
 
     @Override
@@ -71,15 +83,19 @@ public class PessoaResource implements
         LOGGER.log(Level.INFO,
                 String.format("Exemplo do PUT: %s | %d", entity, id));
 
+        this.pessoaService.updatePut(entity, id);
+
     }
 
     @Override
     @PatchMapping(value = "/{id}",
             consumes = {MediaType.APPLICATION_JSON_VALUE})
     public void patch(@RequestBody @Validated Pessoa entity,
-                      @PathVariable("id") Integer id) {
+                      @PathVariable("id") Integer id) throws Exception {
         LOGGER.log(Level.INFO,
                 String.format("Exemplo do PATCH: %s | %d", entity, id));
+
+        this.pessoaService.updatePatch(entity, id);
 
     }
 
